@@ -21,8 +21,18 @@ public static class Program {
             var callOptions = new CallOptions(deadline: DateTime.UtcNow.Add(TimeSpan.FromSeconds(3)));
 
             // Set key
+
+
+         
+
+
             var setRequest = new SetRequest { Key = "foo", Value = "bar" };
             var setResponse = client.Set(setRequest, callOptions);
+            Console.WriteLine($"setRequest={setRequest}");
+            Console.WriteLine($"setResponse={setResponse}");
+
+            setRequest = new SetRequest { Key = "foo2", Value = "bar2" };
+            setResponse = client.Set(setRequest, callOptions);
             Console.WriteLine($"setRequest={setRequest}");
             Console.WriteLine($"setResponse={setResponse}");
 
@@ -31,6 +41,32 @@ public static class Program {
             var getResponse = client.Get(getRequest, callOptions);
             Console.WriteLine($"getRequest={getRequest}");
             Console.WriteLine($"getResponse={getResponse}");
+
+            var listRequest = new ListRequest();
+            var listResponse = client.ListKeys(listRequest, callOptions);
+            Console.WriteLine($"listRequest={listRequest}");
+            Console.WriteLine($"listResponse={listResponse}");
+
+
+            var findRequest = new FindRequest { Key = "foo" };
+            var findResponse = client.Find(findRequest, callOptions);
+            Console.WriteLine($"findRequest={findRequest}");
+            Console.WriteLine($"findResponse={findResponse}");
+
+            findRequest = new FindRequest { Key = "foo2" };
+            findResponse = client.Find(findRequest, callOptions);
+            Console.WriteLine($"findRequest={findRequest}");
+            Console.WriteLine($"findResponse={findResponse}");
+
+            findRequest = new FindRequest { Key = "foo3" };
+            findResponse = client.Find(findRequest, callOptions);
+            Console.WriteLine($"findRequest={findRequest}");
+            Console.WriteLine($"findResponse={findResponse}");
+
+
+
+
+
             channel.ShutdownAsync().Wait();
             Console.WriteLine("\nGRPC client exiting");
         } catch (Exception e) {

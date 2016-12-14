@@ -1,7 +1,7 @@
 
 BASE_SRC=src
-OS=linux_x64
-# OS=macosx_x64
+#OS=linux_x64
+OS=macosx_x64
 
 # Workaround to Nuget issue: http://www.grpc.io/docs/quickstart/csharp.html
 TOOLS_PATH=$(BASE_SRC)/packages/Grpc.Tools.1.0.0/tmp/packages/Grpc.Tools.1.0.0/tools/$(OS)

@@ -24,10 +24,26 @@ message SetResponse {
   bool success = 1;
 }
 
+message ListRequest { }
+
+message ListResponse {
+  repeated string keys = 1;
+}
+
+message FindRequest {
+  string key = 1;
+}
+
+message FindResponse {
+  string node = 1;
+}
+
 //
 // Services
 // 
 service DictionaryService {
   rpc Get (GetRequest) returns (GetResponse);
   rpc Set (SetRequest) returns (SetResponse);
+  rpc ListKeys (ListRequest) returns (ListResponse);
+  rpc Find (FindRequest) returns (FindResponse);
 }

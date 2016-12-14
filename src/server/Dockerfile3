@@ -8,5 +8,5 @@ RUN curl -SL https://raw.githubusercontent.com/Microsoft/MIEngine/getclrdbg-rele
 WORKDIR /app
 ENV GRPC_TRACE=all GRPC_VERBOSITY=DEBUG NUGET_XMLDOC_MODE=skip
 EXPOSE 50053
-ENTRYPOINT ["/bin/bash", "-c", "if [ -z \"$REMOTE_DEBUGGING\" ]; then dotnet server.dll 50053; else sleep infinity; fi"]
+ENTRYPOINT ["/bin/bash", "-c", "if [ -z \"$REMOTE_DEBUGGING\" ]; then dotnet server.dll `/sbin/ip route|awk '/default/ { print $3 }'` 50053 50051 50052; else sleep infinity; fi"]
 COPY . /app
